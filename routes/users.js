@@ -32,7 +32,7 @@ router.post('/add', function(req, res, next) {
   });
 });
 
-router.delete('/delete', function (req, res, next) {
+router.delete('/delete', function(req, res, next) {
   var id = req.body.id;
   console.warn('remove person', id);
 
@@ -40,7 +40,7 @@ router.delete('/delete', function (req, res, next) {
 
   var remainingPersons = persons.filter(function(person) {
     return person.id != id;
-  })
+  });
 
   var str = JSON.stringify(remainingPersons, null, 2);
   fs.writeFileSync('./public/data/persons.json', str);

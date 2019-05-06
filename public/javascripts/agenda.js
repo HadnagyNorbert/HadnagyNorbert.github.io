@@ -3,7 +3,7 @@ var allPersons = []
 var API_URL = {
     //ADD: 'data/add.json'
     ADD: 'users/add',
-    ADD: 'users/delete'
+    DELETE: 'users/delete'
 };
 
 var API_METHOD = {
@@ -80,8 +80,8 @@ function inlineAddPerson(firstName, lastName, phone) {
     display(allPersons);
 }
 
-function inlinwDeletePerson(id) {
-    console.warn('please refresh :', id);
+function inlineDeletePerson(id) {
+    console.warn('please refresh :)', id);
     allPersons = allPersons.filter(function(person) {
         return person.id != id;
     });
@@ -101,11 +101,11 @@ function deletePerson(id) {
         }
     }).then(function(r) {
         return r.json();
-    }).then(function (status) {
+    }).then(function(status) {
         if (status.success) {
             inlineDeletePerson(id);
         } else {
-            console.warn('not saved!', status)
+            console.warn('not removed!', status)
         }
 
     })
@@ -114,7 +114,6 @@ function deletePerson(id) {
 function initEvents() {
    const tbody = document.querySelector('#agenda tbody');
     tbody.addEventListener('click', function(e) {
-        console.warn('click on tbody', e.target);
         if (e.target.className == 'delete') {
             const tr = e.target.parentNode.parentNode;
             const id = tr.getAttribute('data-id');
