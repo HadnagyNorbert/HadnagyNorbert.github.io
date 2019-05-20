@@ -179,6 +179,16 @@ const editPerson = function(id) {
     document.querySelector('[name=phone]').value = person.phone;
     editPersonId = id;
 }
+//if one parameter can skipp ...
+const search = value => {
+    value = value.toLowerCase().trim();
+   const filtered = allPersons.filter(person => {
+        return person.firstName.toLowerCase().includes(value) ||
+            person.lastName.toLowerCase().includes(value) ||
+            person.phone.toLowerCase().includes(value)
+   });
+   display(filtered);
+};
 
 function initEvents() {
    const tbody = document.querySelector('#agenda tbody');
@@ -193,6 +203,13 @@ function initEvents() {
             editPerson(id);
         }
     });
+
+    const searchInput = document.getElementById('search'); 
+    searchInput.addEventListener('input', (e) => {
+        search(e.target.value);
+    })
 }
+
+
 
 initEvents();
